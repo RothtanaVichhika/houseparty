@@ -1,20 +1,11 @@
-/* ═══════════════════════════════════════════════
-   THE KEY TO APARTMENT 701 — script.js
-   Pure vanilla JS. No frameworks. No dependencies.
-   ═══════════════════════════════════════════════ */
+ 
 
-/* ──────────────────────────────────────────────────
-   ✏️  EDIT THIS: Set your event date and time here.
+/* ────────────────────────────────────────────────── 
    Format: 'YYYY-MM-DDTHH:MM:SS'
    Example: '2025-08-16T18:30:00' = Aug 16 2025, 6:30 PM
    ────────────────────────────────────────────────── */
 const EVENT_DATE = new Date('2026-06-26T18:00:00');
-
-/* ──────────────────────────────────────────────────
-   ✏️  EDIT THIS: The secret access code.
-   Currently set to 168
-   Change it to anything you like.
-   ────────────────────────────────────────────────── */
+ 
 const ACCESS_CODE = '168';
 
 /* ══════════════════════════════════════
