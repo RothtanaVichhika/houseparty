@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Key to Apartment 701</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ═══════════════════════════════════════════════
+       SCREEN 1: OPENING / INTRO
+  ═══════════════════════════════════════════════ -->
+    <section id="screen-intro" class="screen active">
+      <div class="noise"></div>
+      <div class="intro-content">
+        <div class="intro-icon">🔑</div>
+        <p id="typewriter" class="typewriter-text" aria-live="polite"></p>
+        <button
+          id="btn-accept"
+          class="btn btn-primary hidden"
+          onclick="goTo('screen-mission')"
+        >
+          Accept Mission
+        </button>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+       SCREEN 2: MISSION CARD
+  ═══════════════════════════════════════════════ -->
+    <section id="screen-mission" class="screen">
+      <div class="noise"></div>
+      <div class="glass-card mission-card">
+        <div class="card-header">
+          <span class="tag">CLASSIFIED</span>
+          <span class="tag">PRIORITY: HIGH</span>
+        </div>
+        <h2 class="mission-title">OPERATION:</h2>
+        <h1 class="mission-name">HOUSEWARMING</h1>
+        <div class="mission-details">
+          <div class="detail-row">
+            <span class="detail-label">HOSTS</span>
+            <span class="detail-value">NINA &amp; MONIKA</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">LOCATION</span>
+            <span class="detail-value">APARTMENT 701</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">STATUS</span>
+            <span class="detail-value">AWAITING YOUR ARRIVAL</span>
+          </div>
+        </div>
+        <div class="mission-objectives">
+          <p class="objectives-title">MISSION OBJECTIVES:</p>
+          <ul>
+            <li>🍽️ Eat good food</li>
+            <li>✨ Bring good energy</li>
+            <li>🥂 Celebrate a new chapter</li>
+            <li>📸 Make memories</li>
+          </ul>
+        </div>
+        <button class="btn btn-primary" onclick="goTo('screen-elevator')">
+          Enter Elevator →
+        </button>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+       SCREEN 3: ELEVATOR
+  ═══════════════════════════════════════════════ -->
+    <section id="screen-elevator" class="screen">
+      <div class="noise"></div>
+      <div class="elevator-wrap">
+        <p class="elevator-hint">Select your floor, agent.</p>
+        <div class="elevator-panel glass-card">
+          <div class="elevator-display" id="elevator-display">--</div>
+          <div class="elevator-buttons">
+            <button class="floor-btn" data-floor="G" onclick="pressFloor(this)">
+              G
+            </button>
+            <button class="floor-btn" data-floor="1" onclick="pressFloor(this)">
+              1
+            </button>
+            <button class="floor-btn" data-floor="2" onclick="pressFloor(this)">
+              2
+            </button>
+            <button class="floor-btn" data-floor="3" onclick="pressFloor(this)">
+              3
+            </button>
+            <button class="floor-btn" data-floor="4" onclick="pressFloor(this)">
+              4
+            </button>
+            <button class="floor-btn" data-floor="5" onclick="pressFloor(this)">
+              5
+            </button>
+            <button class="floor-btn" data-floor="6" onclick="pressFloor(this)">
+              6
+            </button>
+            <button class="floor-btn" data-floor="7" onclick="pressFloor(this)">
+              7
+            </button>
+          </div>
+          <p id="elevator-msg" class="elevator-msg"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+       SCREEN 4: UNLOCK / ACCESS CODE
+  ═══════════════════════════════════════════════ -->
+    <section id="screen-unlock" class="screen">
+      <div class="noise"></div>
+      <div class="glass-card unlock-card">
+        <div class="lock-icon" id="lock-icon">🔒</div>
+        <h2 class="unlock-title">Apartment 701 is locked.</h2>
+        <p class="unlock-sub">Enter your 3-digit access code, agent.</p>
+        <div class="code-input-wrap">
+          <!-- type="tel" gives a number pad on mobile without min/max restrictions -->
+          <input
+            type="tel"
+            id="code-input"
+            class="code-input"
+            placeholder="· · ·"
+            maxlength="3"
+            inputmode="numeric"
+            autocomplete="off"
+            onkeydown="if (event.key === 'Enter') checkCode();"
+            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+          />
+          <button class="btn btn-primary" onclick="checkCode()">Unlock</button>
+        </div>
+        <p id="code-msg" class="code-msg" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+       SCREEN 5: MAIN INVITATION
+  ═══════════════════════════════════════════════ -->
+    <section id="screen-invite" class="screen">
+      <div class="noise"></div>
+      <div class="invite-container">
+        <!-- Hero -->
+        <div class="invite-hero">
+          <p class="invite-eyebrow">You're Invited</p>
+          <h1 class="invite-name">Nina &amp; Monika's<br />Housewarming</h1>
+          <p class="invite-location">Apartment 701 · Southbank, Melbourne</p>
+        </div>
+
+        <!-- Event Details -->
+        <div class="glass-card details-card">
+          <div class="event-details">
+            <div class="event-detail">
+              <span class="event-icon">📅</span>
+              <div>
+                <p class="event-label">Date</p>
+                <p class="event-value">Friday, 26 June 2026</p>
+              </div>
+            </div>
+            <div class="event-detail">
+              <span class="event-icon">🕖</span>
+              <div>
+                <p class="event-label">Time</p>
+                <p class="event-value">From 6:00 PM</p>
+              </div>
+            </div>
+            <div class="event-detail">
+              <span class="event-icon">📍</span>
+              <div>
+                <p class="event-label">Address</p>
+                <p class="event-value">
+                  701 / 58 Clarke Street<br />Southbank VIC 3006
+                </p>
+              </div>
+            </div>
+            <div class="event-detail">
+              <span class="event-icon">👗</span>
+              <div>
+                <p class="event-label">Dress Code</p>
+                <p class="event-value">Smart Casual · Cozy Cute</p>
+              </div>
+            </div>
+          </div>
+          <!-- Maps link -->
+          <a
+            href="https://maps.google.com/?q=58+Clarke+Street+Southbank+VIC+3006"
+            target="_blank"
+            class="maps-link"
+          >
+            Open in Maps →
+          </a>
+        </div>
+
+        <!-- What to Expect -->
+        <div class="glass-card expect-card">
+          <h3 class="section-title">What to Expect</h3>
+          <div class="expect-grid">
+            <span class="expect-item">🍕 Food</span>
+            <span class="expect-item">🍹 Drinks</span>
+            <span class="expect-item">🎵 Music</span>
+            <span class="expect-item">🎲 Board Games</span>
+            <span class="expect-item">📷 Photos</span>
+            <span class="expect-item">🛋️ Cozy Vibes</span>
+          </div>
+        </div>
+
+        <!-- Countdown -->
+        <div class="glass-card countdown-card">
+          <h3 class="section-title">Counting Down</h3>
+          <div id="countdown" class="countdown-grid">
+            <div class="countdown-unit">
+              <span id="cd-days" class="countdown-num">--</span>
+              <span class="countdown-label">Days</span>
+            </div>
+            <div class="countdown-unit">
+              <span id="cd-hours" class="countdown-num">--</span>
+              <span class="countdown-label">Hours</span>
+            </div>
+            <div class="countdown-unit">
+              <span id="cd-mins" class="countdown-num">--</span>
+              <span class="countdown-label">Mins</span>
+            </div>
+            <div class="countdown-unit">
+              <span id="cd-secs" class="countdown-num">--</span>
+              <span class="countdown-label">Secs</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quote -->
+        <div class="quote-wrap">
+          <p class="quote">"New keys. New memories. New chapter."</p>
+        </div>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+          <p>Made with love for Apartment 701. 🔑</p>
+        </footer>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
